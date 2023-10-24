@@ -25,3 +25,15 @@ async function buscarEMostrarVideos(){
 }
 
 buscarEMostrarVideos();
+
+// eventos com a barra de pesquisa:
+
+const barraDePesquisa = document.querySelector("pesquisar__input");
+
+barraDePesquisa.addEventListener("input", filtrarPesquisa);
+
+function filtrarPesquisa(){
+    const videos = document.querySelectorAll(".videos__item");
+
+    if(barraDePesquisa.value != "")
+}
