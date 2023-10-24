@@ -15,5 +15,8 @@ const api = fetch("http://localhost:3000/videos") // retorna a promise -> deve e
             </li>
         `; // inserir os videos no HTML
     })
-
 )
+
+.catch((error) =>{
+    containerVideos.innerHTML = `<p> Houve um erro ao carrecar os vídeos: ${error} </p>`;
+})
