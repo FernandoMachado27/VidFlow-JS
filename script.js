@@ -28,12 +28,25 @@ buscarEMostrarVideos();
 
 // eventos com a barra de pesquisa:
 
-const barraDePesquisa = document.querySelector("pesquisar__input");
+const barraDePesquisa = document.querySelector(".pesquisar__input");
 
 barraDePesquisa.addEventListener("input", filtrarPesquisa);
 
 function filtrarPesquisa(){
     const videos = document.querySelectorAll(".videos__item");
 
-    if(barraDePesquisa.value != "")
+    if(barraDePesquisa.value != ""){
+        for(let video of videos){ // vamos percorrer todos os videos
+            let titulo = video.querySelector(".titulo-video").textContent.toLowerCase(); // pegando os titulos da API e transformando em minusculo
+            let valorFiltro = barraDePesquisa.value.toLowerCase(); // pegando o titulo passado na barra de pesquisa e transformando em minusculo
+
+            if(!titulo.includes(valorFiltro)){ // se o titlulo não inclui o valor da barra de pesquisa
+                video.style.display = "none"; // vou sumir com o video
+            } else {
+                video.style.display = "block"; // se ambos foram iguais, exibe os videos
+            }
+        } 
+    } else { // senão, todos os videos aparecem
+        videos.forEach(video => video.style.display = 'block');
+    }
 }
