@@ -15,6 +15,7 @@ async function buscarEMostrarVideos(){
                                 <img class="img-canal" src"${video.imagem}" alt="Logo do Canal">
                                 <h3 class="titulo-video">${video.titulo}</h3>
                                     <p class="titulo-canal">${video.descricao}</p>
+                                    <p class="categoria" hidden>${video.categoria}</p>
                             </div>   
                     </li>
                 `; // inserir os videos no HTML
@@ -48,5 +49,28 @@ function filtrarPesquisa(){
         } 
     } else { // senão, todos os videos aparecem
         videos.forEach(video => video.style.display = 'block');
+    }
+}
+
+// filtro de categorias
+
+const botaoCategorias = document.querySelectorAll(".superior__item");
+
+botaoCategorias.forEach((botao) => {
+    let nomeCategoria = botao.getAttribute("name"); // pegando o nome de cada um dos botões da lista de categorias
+    botao.addEventListener("click", () => filtrarPorCategoria(nomeCategoria)); // cada evento de clique, chama a função filtrar por categoria
+})
+
+function filtrarPorCategoria(filtro){
+    const videos = document.querySelectorAll(".videos__item"); // pegando todos os videos
+    for(let video of videos){
+        let categoria = video.querySelector(".categoria").textContent.toLocaleLowerCase(); // pegando a categoria de cada video
+        let valorFiltro = filtro.toLocaleLowerCase();
+
+        if(!categoria.includes(valorFiltro) && valorFiltro != 'tudo'){ // se a categoria não incluir o valor de filtro
+            video.style.display = "none";
+        } else {
+            video.style.display = "block"; // exibe os videos
+        }
     }
 }
