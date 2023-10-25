@@ -50,3 +50,12 @@ function filtrarPesquisa(){
         videos.forEach(video => video.style.display = 'block');
     }
 }
+
+// filtro de categorias
+
+const botaoCategorias = document.querySelectorAll(".superior__item");
+
+botaoCategorias.forEach((botao) => {
+    let nomeCategoria = botao.getAttribute("name"); // pegando o nome de cada um dos botões da lista de categorias
+    botao.addEventListener("click", () => filtrarPorCategoria(nomeCategoria));
+})
